@@ -1,0 +1,8 @@
+streamlit
+mibian
+selenium
+webdriver-manager
+matplotlib
+pandas
+scipy
+
