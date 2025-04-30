@@ -21,3 +21,9 @@ variable "image_tag" {
   type        = string
   default     = "latest"
 }
+
+variable "dynamodb_table_name" {
+  description = "Nombre de la tabla DynamoDB"
+  type        = string
+  default     = "OpcionesVolatilidad"
+}

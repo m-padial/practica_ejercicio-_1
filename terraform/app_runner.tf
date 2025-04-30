@@ -46,3 +46,9 @@ resource "aws_apprunner_service" "dash_app" {
     Name = var.app_runner_service_name
   }
 }
+
+# Permisos para que App Runner escriba en DynamoDB
+resource "aws_iam_role_policy_attachment" "apprunner_dynamodb_access" {
+  role       = aws_iam_role.apprunner_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonDynamoDBFullAccess"
+}

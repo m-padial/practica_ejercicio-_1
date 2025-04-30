@@ -34,7 +34,7 @@ jobs:
       working-directory: terraform
       run: terraform init
 
-    - name: Terraform Apply (solo ECR)
+    - name: Terraform Apply (crear solo ECR primero)
       working-directory: terraform
       run: |
         terraform apply -auto-approve \
@@ -42,7 +42,7 @@ jobs:
           -var="ecr_repo_name=${{ env.ECR_REPOSITORY }}" \
           -var="image_tag=${{ env.IMAGE_TAG }}"
 
-    - name: Log in to Amazon ECR
+    - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
 
@@ -58,7 +58,7 @@ jobs:
 
         echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
 
-    - name: Terraform Apply (crear App Runner)
+    - name: Terraform Apply (completo: App Runner + DynamoDB)
       working-directory: terraform
       run: |
         terraform apply -auto-approve \

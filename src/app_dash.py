@@ -8,6 +8,9 @@ import plotly.graph_objs as go
 
 from src.scraping import scrapeo_opciones_y_futuros
 from src.volatilidad import calcular_volatilidad
+from src.guardar_dynamodb import guardar_en_dynamodb
+
+
 
 # --- 1. Scrapeo y cálculo de volatilidad
 df_opciones, df_futuros = scrapeo_opciones_y_futuros()
@@ -154,6 +157,12 @@ def update_graph(vencimiento_seleccionado):
 
     return figure, tabla
 
-# --- 5. Ejecutar
 if __name__ == '__main__':
+    # ✅ Importa la función para guardar en DynamoDB
+    from src.guardar_dynamodb import guardar_en_dynamodb
+
+    # ✅ Guarda los datos en DynamoDB al ejecutar la app
+    guardar_en_dynamodb(df_resultado)
+
+    # ✅ Ejecuta la app web Dash
     app.run(debug=True)

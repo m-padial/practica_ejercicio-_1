@@ -9,3 +9,4 @@ pandas
 scipy
 requests
 gunicorn
+boto3
