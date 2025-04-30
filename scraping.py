@@ -38,7 +38,7 @@ def scrapeo_opciones_y_futuros():
             vencimiento,
             float(strike) if strike and strike != '-' else None,
             tipo_opcion,
-            float(ant) if ant and ant != '-' else None,
+            float(ant.replace('&nbsp;', '').strip()) if ant and '-' not in ant else None,
             None
         ])
 
