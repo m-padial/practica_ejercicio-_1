@@ -7,6 +7,7 @@ on:
 env:
   AWS_REGION: eu-west-1
   ECR_REPOSITORY: intento_terraform
+  IMAGE_TAG: latest
   DOCKERFILE_PATH: Dockerfiles/Dockerfile
 
 jobs:
@@ -14,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout repo
       uses: actions/checkout@v3
 
     - name: Configure AWS credentials
@@ -23,6 +24,22 @@ jobs:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ env.AWS_REGION }}
+
+    - name: Log in to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build and push Docker image to ECR
+      run: |
+        IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+
+        echo "📦 Construyendo imagen Docker..."
+        docker build -t $IMAGE_URI -f $DOCKERFILE_PATH .
+
+        echo "🚀 Subiendo imagen a ECR..."
+        docker push $IMAGE_URI
+
+        echo "IMAGE_URI=$IMAGE_URI" >> $GITHUB_ENV
 
     - name: Set up Terraform
       uses: hashicorp/setup-terraform@v3
@@ -35,17 +52,7 @@ jobs:
 
     - name: Terraform Apply
       working-directory: terraform
-      run: terraform apply -auto-approve
-
-    - name: Login to Amazon ECR
-      id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
-
-    - name: Build, tag, and push Docker image
-      id: build-image
-      env:
-        IMAGE_TAG: latest
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
       run: |
-        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f $DOCKERFILE_PATH .
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        terraform apply -auto-approve \
+          -var="ecr_repo_name=${{ env.ECR_REPOSITORY }}" \
+          -var="image_tag=${{ env.IMAGE_TAG }}"
