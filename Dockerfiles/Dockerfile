@@ -33,7 +33,7 @@ COPY src/volatilidad.py ./
 COPY src/app_dash.py ./   
 
 # Instalar dependencias Python
-RUN pip install --no-cache-dir -r src/requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Exponer el puerto por defecto de Dash
 EXPOSE 8050
