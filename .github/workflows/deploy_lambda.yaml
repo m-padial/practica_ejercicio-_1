@@ -66,4 +66,3 @@ jobs:
           -var="ecr_repo_name=${{ env.ECR_REPOSITORY }}" \
           -var="image_tag=${{ env.IMAGE_TAG }}"
 
-
