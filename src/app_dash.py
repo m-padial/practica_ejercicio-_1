@@ -6,8 +6,8 @@ from dash import dash_table
 import pandas as pd
 import plotly.graph_objs as go
 
-from scraping import scrapeo_opciones_y_futuros
-from volatilidad import calcular_volatilidad
+from src.scraping import scrapeo_opciones_y_futuros
+from src.volatilidad import calcular_volatilidad
 
 # --- 1. Scrapeo y cálculo de volatilidad
 df_opciones, df_futuros = scrapeo_opciones_y_futuros()

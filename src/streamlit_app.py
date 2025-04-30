@@ -3,8 +3,8 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from scraping import scrapeo_opciones_y_futuros
-from volatilidad import calcular_volatilidad
+from src.scraping import scrapeo_opciones_y_futuros
+from src.volatilidad import calcular_volatilidad
 
 # --- 1. Scrapeo y cálculo de volatilidad
 @st.cache_data

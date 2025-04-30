@@ -26,11 +26,11 @@ ENV PATH=$PATH:/usr/bin/chromium
 WORKDIR /app
 
 # Copiar archivos del proyecto
-COPY requirements.txt ./
-COPY graficos.py ./
-COPY scraping.py ./
-COPY volatilidad.py ./
-COPY app_dash.py ./   
+COPY src/requirements.txt ./
+COPY src/graficos.py ./
+COPY src/scraping.py ./
+COPY src/volatilidad.py ./
+COPY src/app_dash.py ./   
 
 # Instalar dependencias Python
 RUN pip install --no-cache-dir -r requirements.txt
