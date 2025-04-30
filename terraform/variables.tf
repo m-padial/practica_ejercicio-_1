@@ -7,7 +7,7 @@ variable "region" {
 variable "ecr_repo_name" {
   description = "Nombre del repositorio ECR"
   type        = string
-  default     = "miax_13_practica"
+  default     = "intento_terraform"
 }
 
 variable "app_runner_service_name" {

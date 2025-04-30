@@ -1,5 +1,5 @@
 resource "aws_ecr_repository" "dash_repo" {
-  name = "miax_13_practica"
+  name = "intento_terraform"  # Cambiado aquí
 }
 
 resource "aws_apprunner_service" "dash_app" {
@@ -10,7 +10,8 @@ resource "aws_apprunner_service" "dash_app" {
       image_configuration {
         port = "8050"
       }
-      image_identifier      = "${aws_ecr_repository.dash_repo.repository_url}:latest"
+
+      image_identifier      = "${aws_ecr_repository.dash_repo.repository_url}:latest"  # Se actualiza automáticamente
       image_repository_type = "ECR"
     }
 

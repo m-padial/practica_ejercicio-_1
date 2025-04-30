@@ -6,7 +6,7 @@ on:
 
 env:
   AWS_REGION: eu-west-1
-  ECR_REPOSITORY: miax_13_practica
+  ECR_REPOSITORY: intento_terraform
   DOCKERFILE_PATH: Dockerfiles/Dockerfile
 
 jobs:
