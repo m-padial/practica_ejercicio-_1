@@ -5,6 +5,7 @@ output "app_runner_url" {
 
 output "ecr_repo_url" {
   description = "URL del repositorio ECR"
-  value       = aws_ecr_repository.dash_repo.repository_url
+  value       = aws_ecr_repository.api_repository.repository_url
 }
+
 
