@@ -33,13 +33,13 @@ COPY src/volatilidad.py ./
 COPY src/app_dash.py ./   
 
 # Instalar dependencias Python
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r src/requirements.txt
 
 # Exponer el puerto por defecto de Dash
 EXPOSE 8050
 
 # Comando para ejecutar la app Dash con Gunicorn
-CMD ["gunicorn", "-b", "0.0.0.0:8050", "app_dash:server"]
+CMD ["gunicorn", "-b", "0.0.0.0:8050", "src.app_dash:server"]
 
 
 
