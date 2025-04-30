@@ -1,0 +1,4 @@
+# requirements_test.txt
+-r requirements.txt
+flake8
+pytest
