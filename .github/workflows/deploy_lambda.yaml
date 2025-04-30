@@ -57,9 +57,12 @@ jobs:
     - name: Export IMAGE_URI to GitHub env
       run: echo "IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}" >> $GITHUB_ENV
 
-    - name: Terraform Apply (completo: App Runner + DynamoDB)
+    - name: Terraform Apply (completo: App Runner + DynamoDb)
       working-directory: terraform
       run: |
         terraform apply -auto-approve \
           -var="ecr_repo_name=${{ env.ECR_REPOSITORY }}" \
           -var="image_tag=${{ env.IMAGE_TAG }}"
+
+
+
