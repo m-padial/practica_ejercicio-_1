@@ -26,14 +26,11 @@ ENV PATH=$PATH:/usr/bin/chromium
 WORKDIR /app
 
 # Copiar archivos del proyecto
-COPY src/requirements.txt ./
-COPY src/graficos.py ./
-COPY src/scraping.py ./
-COPY src/volatilidad.py ./
-COPY src/app_dash.py ./   
-
+# Copia toda la carpeta src con todos sus archivos y submódulos
+COPY src/ ./src/
+ 
 # Instalar dependencias Python
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r src/requirements.txt
 
 # Exponer el puerto por defecto de Dash
 EXPOSE 8050
