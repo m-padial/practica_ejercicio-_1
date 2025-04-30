@@ -8,11 +8,11 @@ def test_scrapeo_opciones_y_futuros():
 
     df_opciones, df_futuros = scrapeo_opciones_y_futuros()
 
-    assert isinstance(df_opciones, pd.DataFrame), "❌ df_opciones no es un DataFrame"
-    assert isinstance(df_futuros, pd.DataFrame), "❌ df_futuros no es un DataFrame"
+    assert isinstance(df_opciones, pd.DataFrame), 
+    assert isinstance(df_futuros, pd.DataFrame), 
 
-    assert not df_opciones.empty, "❌ df_opciones está vacío"
-    assert not df_futuros.empty, "❌ df_futuros está vacío"
+    assert not df_opciones.empty, "
+    assert not df_futuros.empty, 
 
     for col in ['strike', 'put/call', 'FV']:
         assert col in df_opciones.columns, f"❌ Falta la columna '{col}' en df_opciones"
