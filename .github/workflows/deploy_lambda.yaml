@@ -49,10 +49,8 @@ jobs:
     - name: Build and push Docker image to ECR
       run: |
         IMAGE_URI=${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
-
         echo "📦 Construyendo imagen Docker..."
         docker build -t $IMAGE_URI -f $DOCKERFILE_PATH .
-
         echo "🚀 Subiendo imagen a ECR..."
         docker push $IMAGE_URI
 
@@ -65,4 +63,3 @@ jobs:
         terraform apply -auto-approve \
           -var="ecr_repo_name=${{ env.ECR_REPOSITORY }}" \
           -var="image_tag=${{ env.IMAGE_TAG }}"
-
