@@ -30,7 +30,7 @@ vencimientos = sorted(df_resultado['FV'].dropna().unique())
 app.layout = html.Div(
     style={'fontFamily': 'Segoe UI, sans-serif', 'backgroundColor': '#f5f6fa', 'padding': '30px'},
     children=[
-        html.H1("📊 Skew de Volatilidad - MINI IBEX", style={
+        html.H1(" Skew de Volatilidad - MINI IBEX", style={
             'textAlign': 'center',
             'color': '#2f3640',
             'marginBottom': '30px'
